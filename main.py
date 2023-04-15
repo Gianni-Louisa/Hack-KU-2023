@@ -1,17 +1,9 @@
 import cv2
 from face_recog import SimpleFacerec
 
-from flask import Flask
-
-app = Flask(__name__)
-
-@app.route("/")
-def hello_world():
-    return "<p>Hello, World!</p>"
-
 # Encode faces from a folder
 sfr = SimpleFacerec()
-sfr.load_encoding_images("images/")
+sfr.load_encoding_images("Face_Detection_Final/images/")
 people = 0
 # Load Camera
 cap = cv2.VideoCapture(0)
