@@ -1,5 +1,9 @@
 import cv2
+import django
 from face_recog import SimpleFacerec
+
+
+
 
 # Encode faces from a folder
 sfr = SimpleFacerec()
