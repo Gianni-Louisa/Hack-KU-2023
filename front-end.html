@@ -59,4 +59,14 @@ table, th, td {
     <input type='file' id='myFile' name='myFile'>
 </p>
 </body>
+<script>
+
+const readmeFilename = require('readme-filename')
+
+readmeFilename().then(console.log)
+// => readme.md
+
+readmeFilename('Face_Detection_Final/images').then(console.log)
+// => README.markdown
+</script>
 </html>
