@@ -9,3 +9,5 @@ Welcome to Team ----- Hackathon Project!!!!
 
 
 Group Members: Gianni Louisa, Jose Leyba, Eli G, Allie Stratton
+- ![#f03c15](https://placehold.co/15x15/f03c15/f03c15.png) `#f03c15`
+
