@@ -6,11 +6,11 @@ from face_recog import SimpleFacerec
 
 # Encode faces from a folder
 sfr = SimpleFacerec()
-sfr.load_encoding_images("images/")
+sfr.load_encoding_images("Face_Detection_Final/images/")
 
 # Load Camera
 cap = cv2.VideoCapture(0)
-
+same = 1
 while True:
     num = 0
     ret, frame = cap.read()
@@ -39,7 +39,10 @@ while True:
             num += 1
             cv2.putText(frame, name,(x1, y1 - 10), cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 0, 0), 2)
             cv2.rectangle(frame, (x1, y1), (x2, y2), (255, 0, 0), 4)
-    print(f"People in screen = {num} ")
+    if num != same:
+        print(f"People in screen = {num}")
+    same = num
+
         
 
     cv2.imshow("Frame", frame)
@@ -47,6 +50,7 @@ while True:
     key = cv2.waitKey(1)
     if key == 27:
         break
+
 
 cap.release()
 cv2.destroyAllWindows()
