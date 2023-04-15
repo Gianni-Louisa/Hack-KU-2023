@@ -1,6 +1,6 @@
-'''diff
+
 # Hack-KU-2023
-@@Welcome to Team ----- Hackathon Project!!!!@@
+Welcome to Team ----- Hackathon Project!!!!
 
 --Facial Recognition Using Python OpenCV library
 
@@ -10,5 +10,3 @@
 
 
 Group Members: Gianni Louisa, Jose Leyba, Eli G, Allie Stratton
-'''
-
