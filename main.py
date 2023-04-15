@@ -1,5 +1,4 @@
 import cv2
-import django
 from face_recog import SimpleFacerec
 
 
