@@ -7,7 +7,7 @@ sfr.load_encoding_images("Face_Detection_Final/images/")
 people = 0
 # Load Camera
 cap = cv2.VideoCapture(0)
-same = 1
+same = 2
 Jos = True
 Gia = True
 Eli = True
