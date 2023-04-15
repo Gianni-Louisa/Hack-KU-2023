@@ -5,9 +5,17 @@ table, th, td {
   border:1px solid black;
 }
  h2 {
-  text-align: center;
+    margin-bottom:176px;
+    text-align: center;
+    font-family: 'Brush Script MT', cursive;
+    font-size: 2rem;
  }
  p{
+    font-family: monospace;
+    font-size: 20px;
+    font-style: italic;
+    font-variant: normal;
+    font-weight: 700;
     position: absolute;
     text-align: center;
     top: 80%;
@@ -21,31 +29,37 @@ table, th, td {
     left: 30%;
     transform: translate(-50%, -50%);
  }
+ p3{
+    margin-top:60px;
+    margin-right:300px;
+    font-size:18px;
+    font-style: italic;
+    font-variant: normal;
+    font-weight: 700;
+    position: absolute;
+    text-align: center;
+    top: 80%;
+    left: 50%;
+ }
  .square{
     position: absolute;
+    text-align: center;
     top: 40%;
     left: 50%;
     transform: translate(-50%, -50%);
 
-    height: 375px;
+    height: 500px;
     width: 500px;
-    background-color: #666;
+    background-color: rgb(71, 177, 110);
+
+
  }
-#videoplayer{
-    position: absolute;
-    top:40%;
-    left:50%;
-    transform: translate(-50%,-50%);
-    width: 500px;
-    height: 375px;
-    background-color: #666;
-}
 </style>
 <body>
 
 <h2>Facial Recognition Interface</h2>
 <p1>
-<table>
+<table style="margin-bottom:176px; margin-right:600px;">
     <tr>
         <th>Verified Users</th>
     <tr>
@@ -60,19 +74,25 @@ table, th, td {
     <tr>
       <td>Jose Leyba</td>
     </tr>
+    <tr>
+        <td>Allie Stratton</td>
+    </tr>
+    <tr>
+        <td>Eli Gabriel</td>
+    </tr>
+
 </table>
 </p1>
-<div class="square">
-    <video autoplay="true" id="#videoplayer"></video>
-</div>
+<div class="square"></div>
 <p>
-    <label for='myFile'>Select A Photo To Add<br></label>
+    <label for='myFile'>Please Input a Picture: </label>
     <input type='file' id='myFile' name='myFile'>
     <img src="stream.mjpg" width="640" height="480" />
 
 </p>
-    <video id="videoplayer" autoplay="true" >
-    </video>
-
+<p3>
+    People on camera: <br>
+    Total People: 
+</p3>
 </body>
 </html>
