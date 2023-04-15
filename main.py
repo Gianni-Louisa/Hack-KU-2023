@@ -1,8 +1,13 @@
 import cv2
 from face_recog import SimpleFacerec
 
+from flask import Flask
 
+app = Flask(__name__)
 
+@app.route("/")
+def hello_world():
+    return "<p>Hello, World!</p>"
 
 # Encode faces from a folder
 sfr = SimpleFacerec()
