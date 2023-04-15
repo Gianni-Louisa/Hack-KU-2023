@@ -39,7 +39,7 @@ while True:
             num += 1
             cv2.putText(frame, name,(x1, y1 - 10), cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 255, 0), 2)
             cv2.rectangle(frame, (x1, y1), (x2, y2), (255, 255, 0), 4)
-        if name == "Alli Stratton":
+        if name == "Allie Stratton":
             num += 1
             if (Allie):
                 people +=1
