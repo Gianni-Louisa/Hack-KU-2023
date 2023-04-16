@@ -6,62 +6,61 @@ Which was then to be processed and sent to the front end for processing. The fro
 
 Project Created by: Gianni Louisa, Jose Leyba, Allie Stratton, and Eli Gabriel
 """
-import cv2
-from face_recog import Face_Recog
-from http import server
-import io
-import logging
-import socketserver
-from threading import Condition
-from http import server
+import cv2# Importing OpenCV-Python
+from face_recog import Face_Recog# Importing the face recognition class
+from http import server# Importing the server
+import io# Importing the input output library
+import logging# Importing the logging library
+import socketserver# Importing the socket server library
+from threading import Condition# Importing the threading library
+from http import server# Importing the server library
 
 # Encode faces from a folder
-FR = Face_Recog()
-FR.processed_images("Face_Detection_Final/images/")
-people = 0
-# Load Camera
-cap = cv2.VideoCapture(0)
-same = 2
-Jos = True
-Gia = True
-Eli = True
-Allie = True
-while True:
-    num = 0
-    ret, frame = cap.read()
+FR = Face_Recog()# Creating an instance of the Face_Recog class
+FR.processed_images("Face_Detection_Final/images/")# Processing the images in the images folder
+people = 0# Variable to keep track of the number of people in the room
+cap = cv2.VideoCapture(0)# Creating a video capture object
+same = 2# Variable to make sure it isnt double counted
+Jos = True#member names intitialized to true
+Gia = True#member names intitialized to true
+Eli = True#member names intitialized to true
+Allie = True#member names intitialized to true
+while True:# Loop to keep the program running
+    num = 0#num var
+    ret, frame = cap.read()# Reading the frame
 
     # Detect Faces
-    face_locations, face_names = FR.added_faces(frame)
-    for face_loc, name in zip(face_locations, face_names):
-        y1, x2, y2, x1 = face_loc[0], face_loc[1], face_loc[2], face_loc[3]
-        if name== "Unknown":
-            num += 1
-            if num != same:
-                people += 1
-            cv2.putText(frame, name,(x1, y1 - 10), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 0, 255), 2)
-            cv2.rectangle(frame, (x1, y1), (x2, y2), (0, 0, 255), 4)
-        if name == "Jose Leyba":
+    face_locations, face_names = FR.added_faces(frame)# Detecting the faces in the frame
+    for face_loc, name in zip(face_locations, face_names):# Loop to draw the rectangles around the faces
+        y1, x2, y2, x1 = face_loc[0], face_loc[1], face_loc[2], face_loc[3]# Getting the coordinates of the rectangle
+        if name== "Unknown":# If the name is unknown then it will be red
+            num += 1# Adding one to the number of people in the room
+            if num != same:# If the number of people in the room is not the same as the previous frame then it will print the number of people in the room
+                people += 1# Adding one to the total number of people in the room
+            cv2.putText(frame, name,(x1, y1 - 10), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 0, 255), 2)# Drawing the text on the frame will be red B,G,R
+            cv2.rectangle(frame, (x1, y1), (x2, y2), (0, 0, 255), 4)# Drawing the rectangle around the face will be red B,G,R
+        if name == "Jose Leyba":# If the name is Jose then it will be green
             num += 1
             if (Jos):
                 people +=1
                 Jos = False
             cv2.putText(frame, name,(x1, y1 - 10), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 255, 0), 2)
             cv2.rectangle(frame, (x1, y1), (x2, y2), (0, 255, 0), 4)
-        if name == "Gianni Louisa":
+        if name == "Gianni Louisa":# If the name is Gianni then it will be light blue
             if (Gia):
                 people +=1
                 Gia = False
             num += 1
             cv2.putText(frame, name,(x1, y1 - 10), cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 255, 0), 2)
             cv2.rectangle(frame, (x1, y1), (x2, y2), (255, 255, 0), 4)
-        if name == "Allie Stratton":
+        if name == "Allie Stratton":# If the name is Allie then it will be purple
             num += 1
             if (Allie):
                 people +=1
                 Allie = False
             cv2.putText(frame, name,(x1, y1 - 10), cv2.FONT_HERSHEY_SIMPLEX, 1, (200, 0, 200), 2)
-            cv2.rectangle(frame, (x1, y1), (x2, y2), (200, 0, 200), 4)
-        if name == "Eli Gabriel":
+            cv2.rectangle(frame, (x1, y1), (x2, y2), (200, 0, 200), 4)#
+        if name == "Eli Gabriel":# If the name is Eli then it will be blue
             num += 1
             if (Eli):
                 people +=1
@@ -69,18 +68,19 @@ while True:
             cv2.putText(frame, name,(x1, y1 - 10), cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 0, 0), 2)
             cv2.rectangle(frame, (x1, y1), (x2, y2), (255, 0, 0), 4)
     
-    if num != same:
-        print(f"People in screen = {num} ")
-        print(f"Total people counted = {people}")
-    same = num
+    if num != same:# If the number of people in the room is not the same as the previous frame then it will print the number of people in the room
+        print(f"People in screen = {num} ")# Printing the number of people in the room
+        print(f"Total people counted = {people}")# Printing the total number of people in the room
+    same = num# Setting the same variable to the number of people in the room
         
 
-    cv2.imshow("Frame", frame)
+    cv2.imshow("Frame", frame)# Displaying the frame
 
-    key = cv2.waitKey(1)
-    if key == 27:
-        break
+    key = cv2.waitKey(1)# Waiting for a key to be pressed
+    if key == 27:# If the key is the escape key then it will break the loop
+        break# Breaking the loop
 
+#This was our attempt at an HTTP Server to hopefully stream out frame to a webpage to use as a front end but wasnt able to do it in time.
 class StreamingOutput(object):
     def __init__(self):
         self.frame = None
