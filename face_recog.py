@@ -14,35 +14,29 @@ import numpy as np
 
 class Face_Recog:#class for the facial recognition
     def __init__(self):#constructor
-        self.known_face_encodings = []#list of known faces
-        self.known_face_names = []#list of known names
+        self.processed_faces = []#list of known faces
+        self.processed_names = []#list of known names
 
         # Resize frame for a faster speed
         self.frame_resizing = .25#smaller will cause faces to not be seen. Larger will cause the program to run slower(Already very slow)
 
-    def load_encoding_images(self, images_path):#function to load the images
-        # Load Images
+    def processed_images(self, images_path):#function to load the images
         images_path = glob.glob(os.path.join(images_path, "*.*"))#gets the path of the images, and stores them in a list
-
         print("{} encoding images found.".format(len(images_path)))#prints the number of images found, if zero adjust path in main.py
-
-        # Store image encoding and names
         for img_path in images_path:#for loop to go through the images
             img = cv2.imread(img_path)#reads the image
             rgb_img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)#converts the image to RGB from BGR, bytes reversed
-
-            # Get the filename only from the initial file path.
-            basename = os.path.basename(img_path)#gets the name of the image
-            (filename, ext) = os.path.splitext(basename)#gets file name and splits it from the extension
+            file_name = os.path.basename(img_path)#gets the name of the image
+            (filename, ext) = os.path.splitext(file_name)#gets file name and splits it from the extension
             # Get encoding
             img_encoding = face_recognition.face_encodings(rgb_img)[0]#gets the encoding of the image
 
             # Store file name and file encoding
-            self.known_face_encodings.append(img_encoding)#adds the encoding to the list of known faces
-            self.known_face_names.append(filename)#adds the name to the list of known names
+            self.processed_faces.append(img_encoding)#adds the encoding to the list of known faces
+            self.processed_names.append(filename)#adds the name to the list of known names
         print("Encoding images loaded")#prints that the images have been loaded, used to know when complete
 
-    def detect_known_faces(self, frame):#function to detect the faces
+    def added_faces(self, frame):#function to detect the faces
         small_frame = cv2.resize(frame, (0, 0), fx=self.frame_resizing, fy=self.frame_resizing)#resizes the frame to the size of the persons head and distance from camera
         # Find all the faces and face encodings in the current frame of video
         # Convert the image from BGR color (which OpenCV uses) to RGB color (which face_recognition uses)
@@ -53,19 +47,13 @@ class Face_Recog:#class for the facial recognition
         face_names = []#list of names
         for face_encoding in face_encodings:#for loop to go through the face encodings
             # See if the face is a match for the known face(s)
-            matches = face_recognition.compare_faces(self.known_face_encodings, face_encoding)#compares the faces
+            matches = face_recognition.compare_faces(self.processed_faces, face_encoding)#compares the faces
             name = "Unknown"
-
-            # # If a match was found in known_face_encodings, just use the first one.
-            # if True in matches:
-            #     first_match_index = matches.index(True)
-            #     name = known_face_names[first_match_index]
-
             # Or instead, use the known face with the smallest distance to the new face
-            face_distances = face_recognition.face_distance(self.known_face_encodings, face_encoding)#gets the distance of the face
+            face_distances = face_recognition.face_distance(self.processed_faces, face_encoding)#gets the distance of the face
             best_match_index = np.argmin(face_distances)#gets the index of the face
             if matches[best_match_index]:#if the face is a match
-                name = self.known_face_names[best_match_index]#gets the name of the face
+                name = self.processed_names[best_match_index]#gets the name of the face
             face_names.append(name)#adds the name to the list of names
 
         # Convert to numpy array to adjust coordinates with frame resizing quickly
