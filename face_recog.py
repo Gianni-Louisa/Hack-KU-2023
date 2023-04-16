@@ -1,5 +1,12 @@
-import face_recognition
-import cv2
+"""
+Welcome to my face recognition project. This project is based on the face_recognition library.
+The project is divided into two parts: One being the front end(Which we didnt finish completely) and the other being the back end which is the facial recognition.
+The facial recognition is done by using the face_recognition library. The library is used to detect faces and then encode them. The encoding is then stored in a list.
+"""
+
+
+import face_recognition#pip install face_recognition
+import cv2#pip install opencv-python
 import os
 import glob
 import numpy as np
