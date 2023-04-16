@@ -82,17 +82,17 @@ while True:#main loop
         break
     
     cap.release()#release the camera
-    cv2.destroyAllWindows()#close all windows
+    cv2.destroyAllWindows()#
 
 
 
 #Attempt to make a HTTP server to stream the video to a webpage, since we wanted a front end to add to known users and to display the number of people in the room.
 #However were getting bugs due to cv2 and the http server not playing nice together, so we decided to just use the terminal to display the number of people in the room.
 #This code is not used in the final product, but we wanted to keep it in the code for future reference.
-
-class StreamingOutput(object):#
+"""
+class StreamingOutput(object):
     def __init__(self):
-        self.frame = None
+        self.frame = None#
         self.buffer = io.BytesIO()
         self.condition = Condition()
 
@@ -160,3 +160,4 @@ class StreamingServer(socketserver.ThreadingMixIn, server.HTTPServer):
     address = ('', 8000)
     server = StreamingServer(address, StreamingHandler)
     server.serve_forever()
+"""
