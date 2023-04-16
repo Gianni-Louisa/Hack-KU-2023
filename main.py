@@ -4,7 +4,7 @@ The project is divided into two parts: One being the front end(Which we didnt fi
 The facial recognition is done by using the face_recognition library. The library is used to detect faces and then encode them. The encoding is then stored in a list. 
 Which was then to be processed and sent to the front end for processing. The front end was to be done in HTML and CSS. The front end was to be used to display the number of people in the room,
 
-Project Completed by: Gianni Louisa, Jose Leyba, Allie Stratton, and Eli Gabriel
+Project Created by: Gianni Louisa, Jose Leyba, Allie Stratton, and Eli Gabriel
 """
 
 import cv2#pip install opencv-python
@@ -89,8 +89,8 @@ while True:#main loop
 #Attempt to make a HTTP server to stream the video to a webpage, since we wanted a front end to add to known users and to display the number of people in the room.
 #However were getting bugs due to cv2 and the http server not playing nice together, so we decided to just use the terminal to display the number of people in the room.
 #This code is not used in the final product, but we wanted to keep it in the code for future reference.
-"""
-class StreamingOutput(object):
+
+class StreamingOutput(object):#
     def __init__(self):
         self.frame = None
         self.buffer = io.BytesIO()
@@ -156,13 +156,7 @@ class StreamingServer(socketserver.ThreadingMixIn, server.HTTPServer):
     allow_reuse_address = True
     daemon_threads = True
 
-with frame as camera:
-    actuator.init(50)
     output = StreamingOutput()
-    try:
-        address = ('', 8000)
-        server = StreamingServer(address, StreamingHandler)
-        server.serve_forever()
-    finally:
-        camera.stop_recording()
-"""
+    address = ('', 8000)
+    server = StreamingServer(address, StreamingHandler)
+    server.serve_forever()
