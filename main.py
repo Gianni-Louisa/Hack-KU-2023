@@ -16,8 +16,8 @@ from threading import Condition
 from http import server
 
 # Encode faces from a folder
-sfr = Face_Recog()
-sfr.processed_images("Face_Detection_Final/images/")
+FR = Face_Recog()
+FR.processed_images("Face_Detection_Final/images/")
 people = 0
 # Load Camera
 cap = cv2.VideoCapture(0)
@@ -31,7 +31,7 @@ while True:
     ret, frame = cap.read()
 
     # Detect Faces
-    face_locations, face_names = sfr.added_faces(frame)
+    face_locations, face_names = FR.added_faces(frame)
     for face_loc, name in zip(face_locations, face_names):
         y1, x2, y2, x1 = face_loc[0], face_loc[1], face_loc[2], face_loc[3]
         if name== "Unknown":
