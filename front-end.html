@@ -1,3 +1,11 @@
+<!-- 
+Hey there! This is the front end framework for the facial recognition project we deisgned.
+Had slight issues with getting the video of the python program however so we are left with a outline as of now. :(
+But the picture would show our cv2 facial recognition, the table and numbers would also update to reflect program data by taking in a file with the data written from our python program.
+
+Project Created by: Gianni Louisa, Jose Leyba, Allie Stratton, and Eli Gabriel 
+-->
+
 <!DOCTYPE html>
 <html>
 <style>
@@ -18,20 +26,19 @@ table, th, td {
     font-weight: 700;
     position: absolute;
     text-align: center;
-    top: 80%;
+    top: 75%;
     left: 50%;
     transform: translate(-50%, -50%);
  }
  p1{
     position: absolute;   
     text-align: center;
-    top: 30%;
-    left: 30%;
+    top: 33%;
+    left: 50%;
     transform: translate(-50%, -50%);
  }
  p3{
-    margin-top:60px;
-    margin-right:300px;
+    
     font-size:18px;
     font-style: italic;
     font-variant: normal;
@@ -40,6 +47,7 @@ table, th, td {
     text-align: center;
     top: 80%;
     left: 50%;
+    transform: translate(-50%, -50%);
  }
  .square{
     position: absolute;
@@ -85,14 +93,14 @@ table, th, td {
 </p1>
 <div class="square"></div>
 <p>
-    <label for='myFile'>Please Input a Picture: </label>
-    <input type='file' id='myFile' name='myFile'>
-    <img src="stream.mjpg" width="640" height="480" />
+    <label for='myFile'>Please Input a Picture: <br></label>
+    <input type='file' id='myFile' name='myFile'><br>
+    <!--<img src="stream.mjpg"/> This is here for when we get the HTTP server working-->
 
 </p>
 <p3>
-    People on camera: <br>
-    Total People: 
+<br>People on camera: 0<br>
+Total People: 0
 </p3>
 </body>
 </html>
